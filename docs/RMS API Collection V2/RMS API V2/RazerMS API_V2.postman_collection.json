@@ -1,0 +1,2767 @@
+{
+	"info": {
+		"_postman_id": "fe6a0882-6439-4545-a533-c0d522056720",
+		"name": "RazerMS API_V2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9203680"
+	},
+	"item": [
+		{
+			"name": "Payment API",
+			"item": [
+				{
+					"name": "Payment Request (Hosted)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"MerchantID = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"TxnAmount = data.amount;\r",
+									"ReferenceNo = data.orderid;\r",
+									" \r",
+									"var str = TxnAmount + MerchantID + ReferenceNo + vkey;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"var strmd5= CryptoJS.MD5(str).toString();\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "merchant_id",
+									"value": "{{MerchantID}}",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "1.15",
+									"type": "text"
+								},
+								{
+									"key": "orderid",
+									"value": "DEMO5179",
+									"type": "text"
+								},
+								{
+									"key": "bill_name",
+									"value": "RMS+Demo",
+									"type": "text"
+								},
+								{
+									"key": "bill_email",
+									"value": "demo@RMS.com",
+									"type": "text"
+								},
+								{
+									"key": "bill_mobile",
+									"value": "55218438",
+									"type": "text"
+								},
+								{
+									"key": "bill_desc",
+									"value": "testing+by+RMS",
+									"type": "text"
+								},
+								{
+									"key": "vcode",
+									"value": "{{Signature}}",
+									"type": "default"
+								},
+								{
+									"key": "b_addr1",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "b_addr2",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "b_zipcode",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "b_city",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "vcode",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "currency",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "channel",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "langcode",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "returnurl",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "callbackurl",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "cancelurl",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "s_name",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "s_addr1",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "s_addr2",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "s_zipcode",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "s_city",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "s_state",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "s_country",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "s_merchantID",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "s_merchantURL",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "s_merchantMCC",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "is_escrow",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "non_3DS",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "tcctype",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "token",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "installmonth",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "cash_waittime",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "split_info",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "AppDeeplink",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{Payment_Url}}/RMS/pay/{{MerchantID}}/CIMBCLICKS.php",
+							"protocol": "https",
+							"host": [
+								"{{Payment_Url}}"
+							],
+							"path": [
+								"RMS",
+								"pay",
+								"{{MerchantID}}",
+								"CIMBCLICKS.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Payment Request (Hosted)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"MerchantID = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"TxnAmount = data.amount;\r",
+									"ReferenceNo = data.orderid;\r",
+									" \r",
+									"var str = TxnAmount + MerchantID + ReferenceNo + vkey;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"var strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{Payment_Url}}/RMS/pay/{{MerchantID}}/CIMBCLICKS.php?merchant_id={{MerchantID}}&amount=3.00&orderid=DEMO5179&bill_name=RMS+Demo&bill_email=demo@RMS.com&bill_mobile=55218438&bill_desc=testing+by+RMS&vcode={{Signature}}",
+							"protocol": "https",
+							"host": [
+								"{{Payment_Url}}"
+							],
+							"path": [
+								"RMS",
+								"pay",
+								"{{MerchantID}}",
+								"CIMBCLICKS.php"
+							],
+							"query": [
+								{
+									"key": "merchant_id",
+									"value": "{{MerchantID}}"
+								},
+								{
+									"key": "amount",
+									"value": "3.00"
+								},
+								{
+									"key": "orderid",
+									"value": "DEMO5179"
+								},
+								{
+									"key": "bill_name",
+									"value": "RMS+Demo"
+								},
+								{
+									"key": "bill_email",
+									"value": "demo@RMS.com"
+								},
+								{
+									"key": "bill_mobile",
+									"value": "55218438"
+								},
+								{
+									"key": "bill_desc",
+									"value": "testing+by+RMS",
+									"description": "mandatory, alphanumeric, 64kB"
+								},
+								{
+									"key": "vcode",
+									"value": "{{Signature}}",
+									"description": "optional, mandatory for specific channel"
+								},
+								{
+									"key": "b_addr1",
+									"value": "",
+									"description": "optional, mandatory for specific channel",
+									"disabled": true
+								},
+								{
+									"key": "b_addr2",
+									"value": "",
+									"description": "optional, mandatory for specific channel",
+									"disabled": true
+								},
+								{
+									"key": "b_zipcode",
+									"value": "",
+									"description": "optional, mandatory for specific channel",
+									"disabled": true
+								},
+								{
+									"key": "b_city",
+									"value": "",
+									"description": "conditional if accept open amount or order payment, such as virtual terminal is optional otherwise is mandatory. 32 chars hexadecimal string",
+									"disabled": true
+								},
+								{
+									"key": "vcode",
+									"value": "",
+									"description": "optional, 3 chars ISO-4217 currency code",
+									"disabled": true
+								},
+								{
+									"key": "currency",
+									"value": "",
+									"description": "optional, predefined string. Refer to the channel column in the Channel Lists.",
+									"disabled": true
+								},
+								{
+									"key": "channel",
+									"value": "",
+									"description": "optional, predefined string. Currently only en for English & cn for Simplified Chinese.",
+									"disabled": true
+								},
+								{
+									"key": "langcode",
+									"value": "",
+									"description": "optional, URL",
+									"disabled": true
+								},
+								{
+									"key": "returnurl",
+									"value": "",
+									"description": "optional, URL",
+									"disabled": true
+								},
+								{
+									"key": "callbackurl",
+									"value": "",
+									"description": "optional, URL",
+									"disabled": true
+								},
+								{
+									"key": "cancelurl",
+									"value": "",
+									"description": "optional, mandatory for specific channel",
+									"disabled": true
+								},
+								{
+									"key": "s_name",
+									"value": "",
+									"description": "optional, mandatory for specific channel",
+									"disabled": true
+								},
+								{
+									"key": "s_addr1",
+									"value": "",
+									"description": "optional, mandatory for specific channel",
+									"disabled": true
+								},
+								{
+									"key": "s_addr2",
+									"value": "",
+									"description": "optional, mandatory for specific channel",
+									"disabled": true
+								},
+								{
+									"key": "s_zipcode",
+									"value": "",
+									"description": "optional, mandatory for specific channel",
+									"disabled": true
+								},
+								{
+									"key": "s_city",
+									"value": "",
+									"description": "optional, mandatory for specific channel",
+									"disabled": true
+								},
+								{
+									"key": "s_state",
+									"value": "",
+									"description": "optional, mandatory for specific channel",
+									"disabled": true
+								},
+								{
+									"key": "s_country",
+									"value": "",
+									"description": "conditional for partne",
+									"disabled": true
+								},
+								{
+									"key": "s_merchantID",
+									"value": "",
+									"description": "conditional for partne",
+									"disabled": true
+								},
+								{
+									"key": "s_merchantURL",
+									"value": "",
+									"description": "conditional for partne",
+									"disabled": true
+								},
+								{
+									"key": "s_merchantMCC",
+									"value": "",
+									"description": "optional, for escrow payment",
+									"disabled": true
+								},
+								{
+									"key": "is_escrow",
+									"value": "",
+									"description": "conditional for partner, 0 or 1",
+									"disabled": true
+								},
+								{
+									"key": "non_3DS",
+									"value": "",
+									"description": "optional, for card type transaction",
+									"disabled": true
+								},
+								{
+									"key": "tcctype",
+									"value": "",
+									"description": "optional",
+									"disabled": true
+								},
+								{
+									"key": "token",
+									"value": "",
+									"description": "optional, mandatory for installment payment",
+									"disabled": true
+								},
+								{
+									"key": "installmonth",
+									"value": "",
+									"description": "optional, integer",
+									"disabled": true
+								},
+								{
+									"key": "cash_waittime",
+									"value": "",
+									"description": "optional, alphanumeric with pipe ( | ) as data  delimiter and comma ( , ) as recipient separato",
+									"disabled": true
+								},
+								{
+									"key": "split_info",
+									"value": "",
+									"description": "optional, URL",
+									"disabled": true
+								},
+								{
+									"key": "AppDeeplink",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Payment Request (Direct Server)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"MerchantID = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"TxnAmount = data.TxnAmount;\r",
+									"ReferenceNo = data.ReferenceNo;\r",
+									" \r",
+									"var str = TxnAmount + MerchantID + ReferenceNo + vkey;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"var strmd5= CryptoJS.MD5(str).toString();\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "MerchantID",
+									"value": "{{MerchantID}}",
+									"type": "text"
+								},
+								{
+									"key": "ReferenceNo",
+									"value": "18570",
+									"type": "text"
+								},
+								{
+									"key": "TxnType",
+									"value": "SALS",
+									"type": "text"
+								},
+								{
+									"key": "TxnChannelExt",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "TxnChannel",
+									"value": "PAYNOW",
+									"type": "text"
+								},
+								{
+									"key": "TxnCurrency",
+									"value": "SGD",
+									"type": "text"
+								},
+								{
+									"key": "TxnAmount",
+									"value": "1.50",
+									"type": "text"
+								},
+								{
+									"key": "CustName",
+									"value": "RMS+Demo",
+									"type": "text"
+								},
+								{
+									"key": "Custemail",
+									"value": "demo@RMS.com",
+									"type": "text"
+								},
+								{
+									"key": "CustContact",
+									"value": "55218438",
+									"type": "text"
+								},
+								{
+									"key": "CustDesc",
+									"value": "testing+by+RMS",
+									"type": "text"
+								},
+								{
+									"key": "Signature",
+									"value": "{{Signature}}",
+									"type": "text"
+								},
+								{
+									"key": "ReturnURL",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "NotificationURL",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "CallbackURL",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "CC_PAN",
+									"value": "4283322048928376",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "CC_CVV2",
+									"value": "747",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "CC_MONTH",
+									"value": "12",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "CC_YEAR",
+									"value": "22",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "CC_TOKEN",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "Method",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "non_3DS",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "subMerchantID",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "is_DDA",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "BuyerIDNumber",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "BuyerIDType",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "split_info",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "CashWaittime",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "UserAgent",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "AppDeeplink",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "mpstokenstatus",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "InstallMonth",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{Payment_Url}}/RMS/API/Direct/1.4.0/index.php",
+							"protocol": "https",
+							"host": [
+								"{{Payment_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"Direct",
+								"1.4.0",
+								"index.php"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Merchant API",
+			"item": [
+				{
+					"name": "Direct Status Requery",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"txID = data.txID;\r",
+									"amount = data.amount;\r",
+									"\r",
+									"str = txID + domain + vkey + amount;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "10.00",
+									"description": "The payment amount",
+									"type": "text"
+								},
+								{
+									"key": "txID",
+									"value": "973085689",
+									"description": "Unique transaction ID for tracking purpose",
+									"type": "text"
+								},
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}",
+									"description": "Merchant ID in PG system",
+									"type": "text"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}",
+									"description": "skey = md5( txID & domain & verify_key & amount )",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "",
+									"description": "The URL to receive POST response from PG",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"description": "0 = plain text result (default)\n1 = result via POST method",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/gate-query/index.php",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"gate-query",
+								"index.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Direct Status Requery",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"MerchantID = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"TxnAmount = data.amount;\r",
+									"ReferenceNo = data.txID;\r",
+									" \r",
+									"var str = ReferenceNo + MerchantID + vkey + TxnAmount;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"var strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/gate-query/index.php?amount=60.00&txID=1589965424&domain={{MerchantID}}&skey={{Signature}}",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"gate-query",
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "amount",
+									"value": "60.00"
+								},
+								{
+									"key": "txID",
+									"value": "1589965424"
+								},
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}"
+								},
+								{
+									"key": "url",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Indirect Status Requery",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"txID = data.oID;\r",
+									"amount = data.amount;\r",
+									"\r",
+									"str = txID + domain + vkey + amount;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "1.10",
+									"type": "text"
+								},
+								{
+									"key": "tIDs",
+									"value": "30365812",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}",
+									"type": "text"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "oID",
+									"value": "OP_PIKYIN_9189",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/query/q_by_oid.php",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"query",
+								"q_by_oid.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Indirect Status Requery",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"txID = data.tIDs;\r",
+									"\r",
+									"str = domain + txID + vkey;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/query/q_by_tids.php?amount=1.10&tIDs=30365812&domain={{MerchantID}}&skey={{Signature}}",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"query",
+								"q_by_tids.php"
+							],
+							"query": [
+								{
+									"key": "amount",
+									"value": "1.10"
+								},
+								{
+									"key": "tIDs",
+									"value": "30365812"
+								},
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}"
+								},
+								{
+									"key": "url",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Daily Transaction Report (Reconciliation)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"PrivKey = pm.environment.get(\"PrivateKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"rdate = data.rdate;\r",
+									"\r",
+									"str = rdate + domain + PrivKey;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "merchantID",
+									"value": "foodpandaMyDirect",
+									"description": "Merchant ID in PG system",
+									"type": "text"
+								},
+								{
+									"key": "skey",
+									"value": "896451ba9c98054114bc0e591910048a",
+									"description": "skey   =md5( rdate & merchantID & secret_key )",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "rdate",
+									"value": "2022-10-16",
+									"description": "The date or beginning time of transactions to query\n2020-10-10 or 2020-10-10 07:11:24",
+									"type": "text"
+								},
+								{
+									"key": "rduration",
+									"value": "",
+									"description": "Without rduration, the search duration is 24 hours or 86400 seconds starting from rdate",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "",
+									"description": "00 - success\n11 - failed\n22 - pending\n\nCombine with delimiter “|” for multiple status or left empty for all status",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "version",
+									"value": "3.0",
+									"description": "2 or 3",
+									"type": "text"
+								},
+								{
+									"key": "additional_fields",
+									"value": "all",
+									"description": "TransactionRate - transaction rate\nBillingInfo - billing info\nTransactionCost - transaction cost\nChannel - channel\nBillingMobileNumber - billing mobile\nTransactionFee - transaction fee\nGST - GST (tax)\nNetAmount - net amount\nIPAddress - IP address\nBankName - bank name\nBIN - card no (hidden)\nExpiryDate - card expiry date\nStatusDescription - status description\nSettlementDate - settlement date\nPaidDate - paid date\nTerminalID - terminal ID\nPayTransactionID - transaction ID\nBuyerName - buyer name\nCaptureRefID - Capture Reference ID (Only in v3)\nRefundRefID - Refund Reference ID (Only in v3)\nall - for all additional fields\n\nCombine with delimiter “,” for multiple fields\n",
+									"type": "text"
+								},
+								{
+									"key": "response_type",
+									"value": "csv",
+									"description": "Response format in either text/json/csv(only in v2 and v3)",
+									"type": "text"
+								},
+								{
+									"key": "skey",
+									"value": "4829d86698fdfcf739e27cd05b63bc14",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/PSQ/psq-daily.php",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"PSQ",
+								"psq-daily.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Daily Transaction Report (Reconciliation)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"PrivKey = pm.environment.get(\"PrivateKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"rdate = data.rdate;\r",
+									"\r",
+									"str = rdate + domain + PrivKey;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/PSQ/psq-daily.php?rdate=2021-09-30&version=2&merchantID={{MerchantID}}&skey={{Signature}}",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"PSQ",
+								"psq-daily.php"
+							],
+							"query": [
+								{
+									"key": "rdate",
+									"value": "2021-09-30"
+								},
+								{
+									"key": "rduration",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "version",
+									"value": "2"
+								},
+								{
+									"key": "additional_fields",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "response_type",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "merchantID",
+									"value": "{{MerchantID}}"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Settlement Report (Reconciliation)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"date = data.date;\r",
+									"str = domain + vkey + date ;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/settlement/report.php?version=5.0min&date=2023-03-07&format=json&page=1&merchant_id={{MerchantID}}&token=6b04cea1460d876920af85233dcaad2b",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"settlement",
+								"report.php"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "5.0min"
+								},
+								{
+									"key": "date",
+									"value": "2023-03-07"
+								},
+								{
+									"key": "format",
+									"value": "json"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "merchant_id",
+									"value": "{{MerchantID}}"
+								},
+								{
+									"key": "token",
+									"value": "6b04cea1460d876920af85233dcaad2b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Capture Request (For pre-auth or authorized transaction)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"txID = data.txID;\r",
+									"amount = data.amount;\r",
+									"str = txID + amount + domain + vkey ;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}",
+									"description": "Merchant ID in PG system",
+									"type": "text"
+								},
+								{
+									"key": "tranID",
+									"value": "30365812",
+									"description": "Unique PG transaction ID",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "1.10",
+									"description": "The total amount paid or to be paid",
+									"type": "text"
+								},
+								{
+									"key": "RefID",
+									"value": "DEMO637",
+									"description": "Reference ID for tracking purpose sent by merchant",
+									"type": "text"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}",
+									"description": "skey   =md5( txnID & amount & domain & verify_key )",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/capstxn/index.php",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"capstxn",
+								"index.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Capture Request (For pre-auth or authorized transaction)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"txID = data.txID;\r",
+									"amount = data.amount;\r",
+									"str = txID + amount + domain + vkey ;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/capstxn/index.php?domain={{MerchantID}}&tranID=30365812&amount=1.10&RefID=DEMO637&skey={{Signature}}",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"capstxn",
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}"
+								},
+								{
+									"key": "tranID",
+									"value": "30365812"
+								},
+								{
+									"key": "amount",
+									"value": "1.10"
+								},
+								{
+									"key": "RefID",
+									"value": "DEMO637"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reversal Request",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"txID = data.txID;\r",
+									"amount = data.amount;\r",
+									"str = txID + domain + vkey ;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "txnID",
+									"value": "30365812",
+									"description": "Unique transaction ID for tracking purpose",
+									"type": "text"
+								},
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}",
+									"description": "Merchant ID in PG system",
+									"type": "text"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}",
+									"description": "skey   =md5( txnID & domain & secret_key)",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "",
+									"description": "The URL to receive POST response from PG",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"description": "0 = plain text result (default)\n1 = result via POST method",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/refundAPI/refund.php",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"refundAPI",
+								"refund.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reversal Request",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"txID = data.txID;\r",
+									"amount = data.amount;\r",
+									"str = txID + domain + vkey ;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/refundAPI/refund.php?txnID=30365812&domain={{MerchantID}}&skey={{Signature}}",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"refundAPI",
+								"refund.php"
+							],
+							"query": [
+								{
+									"key": "txnID",
+									"value": "30365812"
+								},
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}"
+								},
+								{
+									"key": "url",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Advanced Full/Partial Refund",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"PrivateKey = pm.environment.get(\"PrivateKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"RefundType = data.RefundType;\r",
+									"RefID = data.RefID;\r",
+									"TxnID = data.TxnID;\r",
+									"Amount = data.Amount;\r",
+									"\r",
+									"str = RefundType + domain + RefID + TxnID + Amount + PrivateKey ;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "RefundType",
+									"value": "P",
+									"description": "P - Partial Refund",
+									"type": "text"
+								},
+								{
+									"key": "MerchantID",
+									"value": "{{MerchantID}}",
+									"description": "Merchant ID provided by PG",
+									"type": "text"
+								},
+								{
+									"key": "RefID",
+									"value": "DEMO637",
+									"description": "Unique reference ID for tracking purpose sent by merchant",
+									"type": "text"
+								},
+								{
+									"key": "TxnID",
+									"value": "30365812",
+									"description": "PG Transaction ID",
+									"type": "text"
+								},
+								{
+									"key": "Amount",
+									"value": "1.10",
+									"description": "eg. ‘5.00’ Amount to be refunded",
+									"type": "text"
+								},
+								{
+									"key": "BankCode",
+									"value": "",
+									"description": "Applicable for Online Banking and Physical Payment transactions only. (Refer to predefined bank lists",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "BankCountry",
+									"value": "",
+									"description": "Applicable for Online Banking and Physical Payment transactions only. Two letters country ISO code. (Default value: MY)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "BeneficiaryName",
+									"value": "",
+									"description": "Applicable for Online Banking and Physical Payment transactions only.",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "BeneficiaryAccNo",
+									"value": "",
+									"description": "Applicable for Online Banking and Physical Payment transactions only.",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "Signature",
+									"value": "{{Signature}}",
+									"description": "Signature = md5(  RefundType .  MerchantID .  RefID .  TxnID .  Amount . secret_key )",
+									"type": "text"
+								},
+								{
+									"key": "mdr_flag",
+									"value": "",
+									"description": "This is to include or exclude MDR refund to the buyer if the amount is same as bill amount.\nAvailable value is as below:\n0 - Include MDR/Full Refund (Default)\n1 - Exclude/Reserved MDR",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "notify_url",
+									"value": "",
+									"description": "This is the URL for merchant to receive refund status (same response as this API), either 00 (Success) or 11 (Rejected)  with slightly different Signature",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/refundAPI/index.php",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"refundAPI",
+								"index.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Advanced Full/Partial Refund",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"PrivateKey = pm.environment.get(\"PrivateKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"RefundType = data.RefundType;\r",
+									"RefID = data.RefID;\r",
+									"TxnID = data.TxnID;\r",
+									"Amount = data.Amount;\r",
+									"\r",
+									"str = RefundType + domain + RefID + TxnID + Amount + PrivateKey ;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/refundAPI/index.php?RefundType=P&MerchantID={{MerchantID}}&RefID=DEMO637&TxnID=30365812&Amount=1.10&Signature={{Signature}}",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"refundAPI",
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "RefundType",
+									"value": "P"
+								},
+								{
+									"key": "MerchantID",
+									"value": "{{MerchantID}}"
+								},
+								{
+									"key": "RefID",
+									"value": "DEMO637"
+								},
+								{
+									"key": "TxnID",
+									"value": "30365812"
+								},
+								{
+									"key": "Amount",
+									"value": "1.10"
+								},
+								{
+									"key": "BankCode",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "BankCountry",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "BeneficiaryName",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "BeneficiaryAccNo",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "Signature",
+									"value": "{{Signature}}"
+								},
+								{
+									"key": "mdr_flag",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "notify_url",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Refund Status Inquiry by TxnID/RefID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"VerifyKey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"TxnID = data.TxnID;\r",
+									"\r",
+									"str = TxnID + domain + VerifyKey ;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "TxnID",
+									"value": "3",
+									"description": "PG Transaction ID",
+									"type": "text"
+								},
+								{
+									"key": "MerchantID",
+									"value": "{{MerchantID}}",
+									"description": "Merchant ID provided by PG",
+									"type": "text"
+								},
+								{
+									"key": "Signature",
+									"value": "{{Signature}}",
+									"description": "Signature = md5(  TxnID .  MerchantID .  verify_key )",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/refundAPI/q_by_txn.php",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"refundAPI",
+								"q_by_txn.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Refund Status Inquiry by TxnID/RefID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"VerifyKey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"RefID = data.RefID;\r",
+									"\r",
+									"str = RefID + domain + VerifyKey ;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/refundAPI/q_by_refID.php?RefID=a0123&MerchantID={{MerchantID}}&Signature={{Signature}}",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"refundAPI",
+								"q_by_refID.php"
+							],
+							"query": [
+								{
+									"key": "RefID",
+									"value": "a0123"
+								},
+								{
+									"key": "MerchantID",
+									"value": "{{MerchantID}}"
+								},
+								{
+									"key": "Signature",
+									"value": "{{Signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Static QR-Code Generator",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"VerifyKey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"channel = data.channel;\r",
+									"orderid = data.orderid;\r",
+									"currency = data.currency;\r",
+									"amount = data.amount;\r",
+									"\r",
+									"str = domain + channel + orderid + currency + amount + VerifyKey ;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "merchantID",
+									"value": "{{MerchantID}}",
+									"description": "Merchant ID provided by PG",
+									"type": "text"
+								},
+								{
+									"key": "channel",
+									"value": "WeChatPaySQR",
+									"description": "Channel requested:\nAlipaySQR - Alipay Static QR\nWeChatPaySQR - WeChat Pay Static QR\n",
+									"type": "text"
+								},
+								{
+									"key": "orderid",
+									"value": "DEMO637",
+									"description": "Items ID. E.g: S001",
+									"type": "text"
+								},
+								{
+									"key": "currency",
+									"value": "MYR",
+									"description": "ISO-4217 currency code",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "1.10",
+									"description": "The total amount to be paid in one purchase order. 2 decimal points and comma( , ) is not allowed",
+									"type": "text"
+								},
+								{
+									"key": "bill_name",
+									"value": "itemname",
+									"description": "Items name",
+									"type": "text"
+								},
+								{
+									"key": "bill_desc",
+									"value": "itemdesc",
+									"description": "Item description",
+									"type": "text"
+								},
+								{
+									"key": "checksum",
+									"value": "{{Signature}}",
+									"description": "Checksum = md5(  merchantID . channel . orderid . currency . amount  .  verify_key )",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/staticqr/index.php",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"staticqr",
+								"index.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Static QR-Code Generator",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"VerifyKey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"channel = data.channel;\r",
+									"orderid = data.orderid;\r",
+									"currency = data.currency;\r",
+									"amount = data.amount;\r",
+									"\r",
+									"str = domain + channel + orderid + currency + amount + VerifyKey ;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/staticqr/index.php?merchantID={{MerchantID}}&channel=WeChatPaySQR&orderid=DEMO637&currency=MYR&amount=1.10&bill_name=itemname&bill_desc=itemdesc&checksum={{Signature}}",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"staticqr",
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "merchantID",
+									"value": "{{MerchantID}}"
+								},
+								{
+									"key": "channel",
+									"value": "WeChatPaySQR"
+								},
+								{
+									"key": "orderid",
+									"value": "DEMO637"
+								},
+								{
+									"key": "currency",
+									"value": "MYR"
+								},
+								{
+									"key": "amount",
+									"value": "1.10"
+								},
+								{
+									"key": "bill_name",
+									"value": "itemname"
+								},
+								{
+									"key": "bill_desc",
+									"value": "itemdesc"
+								},
+								{
+									"key": "checksum",
+									"value": "{{Signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Channel Status API",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"PrivateKey = pm.environment.get(\"PrivateKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"reqTime = data.reqTime;\r",
+									"reqType = data.reqType;\r",
+									"\r",
+									"str = domain + PrivateKey + reqTime + reqType;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/chkstat/OK-rate.php?domain={{MerchantID}}&reqTime=20161202153423&reqType=Merchant&skey={{Signature}}&duration=3",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"chkstat",
+								"OK-rate.php"
+							],
+							"query": [
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}",
+									"description": "Merchant ID in PG system"
+								},
+								{
+									"key": "reqTime",
+									"value": "20161202153423",
+									"description": "Request date & time, e.g. 20161202153423"
+								},
+								{
+									"key": "reqType",
+									"value": "Merchant",
+									"description": "Global: system-wide OK rate\nMerchant: merchant only OK rate"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}",
+									"description": "skey  = md5( domain & secret_key & reqTime & reqType )"
+								},
+								{
+									"key": "duration",
+									"value": "3",
+									"description": "Latest sampling window size in HOUR for merchant-only request. If the total sampling number is less than 30, it has less reference value due to the low statistical significance and n/a will be given"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Card BIN information API",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"PrivateKey = pm.environment.get(\"PrivateKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"BIN = data.BIN;\r",
+									"\r",
+									"str = domain + PrivateKey + BIN;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/query/q_BINinfo.php?domain={{MerchantID}}&skey={{Signature}}&BIN=519603",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"query",
+								"q_BINinfo.php"
+							],
+							"query": [
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}",
+									"description": "Merchant ID in PG system"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}",
+									"description": "skey  = md5( domain & secret_key & BIN )"
+								},
+								{
+									"key": "BIN",
+									"value": "519603",
+									"description": "First 6-digit number of the PAN, e.g. 519603"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Foreign Exchange Rate API",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"VerifyKey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"reqtime = data.reqtime;\r",
+									"\r",
+									"str = domain + VerifyKey + reqtime;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/query/q_fx_rate.php?domain={{MerchantID}}&reqtime=20161202&source=Maybank&skey={{Signature}}",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"query",
+								"q_fx_rate.php"
+							],
+							"query": [
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}",
+									"description": "Merchant ID in PG system"
+								},
+								{
+									"key": "reqtime",
+									"value": "20161202",
+									"description": "Request date & time, e.g. 20161202"
+								},
+								{
+									"key": "source",
+									"value": "Maybank",
+									"description": "Predefined value as below:\nBNM\nMaybank\n"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}",
+									"description": "skey  = md5( domain & secret_key & reqTime )"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Void Pending-Cash API",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"VerifyKey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"tranID = data.tranID;\r",
+									"amount = data.amount;\r",
+									"\r",
+									"str = tranID + amount + domain + VerifyKey;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tranID",
+									"value": "30365812",
+									"description": "PG Transaction ID",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "1.10",
+									"description": "The total amount to be paid in one purchase order. 2 decimal points, comma( , ) is not allowed.",
+									"type": "text"
+								},
+								{
+									"key": "merchantID",
+									"value": "{{MerchantID}}",
+									"description": "Merchant ID provided by PG",
+									"type": "text"
+								},
+								{
+									"key": "checksum",
+									"value": "{{Signature}}",
+									"description": "Checksum= md5(  tranID . amount . merchantID .  verify_key )",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/VoidPendingCash/index.php",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"VoidPendingCash",
+								"index.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Void Pending-Cash API",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"VerifyKey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"tranID = data.tranID;\r",
+									"amount = data.amount;\r",
+									"\r",
+									"str = tranID + amount + domain + VerifyKey;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/VoidPendingCash/index.php?tranID=30365812&amount=1.10&merchantID={{MerchantID}}&checksum={{Signature}}",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"VoidPendingCash",
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "tranID",
+									"value": "30365812"
+								},
+								{
+									"key": "amount",
+									"value": "1.10"
+								},
+								{
+									"key": "merchantID",
+									"value": "{{MerchantID}}"
+								},
+								{
+									"key": "checksum",
+									"value": "{{Signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recurring Plans API",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"PrivateKey = pm.environment.get(\"PrivateKey\");\r",
+									"\r",
+									"data = request.data;\r",
+									"charge_on_endofmonth = data.charge_on_endofmonth;\r",
+									"period = data.period;\r",
+									"cycle_term = data.cycle_term;\r",
+									"status = data.status;\r",
+									"\r",
+									"str = domain + PrivateKey + charge_on_endofmonth + period + cycle_term + status;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}",
+									"description": "Merchant ID provided by PG",
+									"type": "text"
+								},
+								{
+									"key": "charge_on_endofmonth",
+									"value": "Y",
+									"description": "Predefined value as below:\nY\nN\n",
+									"type": "text"
+								},
+								{
+									"key": "period",
+									"value": "month",
+									"description": "Predefined value as below:\nmonth\nweek\nday\nyear\nquarter\nhalfyear\nbimonth\nbiweek\n",
+									"type": "text"
+								},
+								{
+									"key": "cycle_term",
+									"value": "6",
+									"description": "Billing cycle (E.g. ‘6’, ‘12’, ‘24’)",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "On",
+									"description": "Predefined value as below:\nOn\nOff\nNA\n",
+									"type": "text"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}",
+									"description": "skey  = md5( domain & secret_key & charge_on_endofmonth & period & cycle_term & status)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/Recurring/get_plans.php",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"Recurring",
+								"get_plans.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recurring Plans API",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"domain = pm.environment.get(\"MerchantID\");\r",
+									"PrivateKey = pm.environment.get(\"PrivateKey\");\r",
+									"\r",
+									"data = pm.request.url.query.toObject();\r",
+									"charge_on_endofmonth = data.charge_on_endofmonth;\r",
+									"period = data.period;\r",
+									"cycle_term = data.cycle_term;\r",
+									"status = data.status;\r",
+									"\r",
+									"str = domain + PrivateKey + charge_on_endofmonth + period + cycle_term + status;\r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"strmd5= CryptoJS.MD5(str).toString();\r",
+									"console.log(strmd5);\r",
+									"pm.globals.set('Signature', strmd5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{API_Url}}/RMS/API/Recurring/get_plans.php?domain={{MerchantID}}&charge_on_endofmonth=Y&period=month&cycle_term=6&status=On&skey={{Signature}}",
+							"protocol": "https",
+							"host": [
+								"{{API_Url}}"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"Recurring",
+								"get_plans.php"
+							],
+							"query": [
+								{
+									"key": "domain",
+									"value": "{{MerchantID}}"
+								},
+								{
+									"key": "charge_on_endofmonth",
+									"value": "Y"
+								},
+								{
+									"key": "period",
+									"value": "month"
+								},
+								{
+									"key": "cycle_term",
+									"value": "6"
+								},
+								{
+									"key": "status",
+									"value": "On"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://pay.merchant.razer.com/RMS/API/chkstat/channel_status.php",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Get MerchantID and vkey pre-set as environmental variables\r",
+									"MerchantID = pm.environment.get(\"MerchantID\");\r",
+									"vkey = pm.environment.get(\"VerifyKey\");\r",
+									"\r",
+									"var data = request.data;\r",
+									"var datetime = data.datetime;\r",
+									"var str = datetime + MerchantID;\r",
+									" \r",
+									"console.log(str);\r",
+									"\r",
+									"//MD5 encryption of STR\r",
+									"var sha256= CryptoJS.HmacSHA256(str, vkey).toString(CryptoJS.digest);\r",
+									"console.log(sha256);\r",
+									"\r",
+									"pm.globals.set('Signature', sha256);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "merchantID",
+									"value": "{{MerchantID}}",
+									"type": "text"
+								},
+								{
+									"key": "datetime",
+									"value": "20230112000000",
+									"type": "text"
+								},
+								{
+									"key": "skey",
+									"value": "{{Signature}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pay.merchant.razer.com/RMS/API/chkstat/channel_status.php",
+							"protocol": "https",
+							"host": [
+								"pay",
+								"merchant",
+								"razer",
+								"com"
+							],
+							"path": [
+								"RMS",
+								"API",
+								"chkstat",
+								"channel_status.php"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

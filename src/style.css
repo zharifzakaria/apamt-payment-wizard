@@ -1,0 +1,8 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root, [data-theme] {
+    background-color: #f8fafc; /* Light background color */
+    color: #000; /* Adjust the text color if needed */
+}

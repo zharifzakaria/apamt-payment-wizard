@@ -1,0 +1,9 @@
+feat: Enhance project documentation and security
+
+- Replace hardcoded Supabase keys with environment variables for improved security.
+- Create a `.env.example` file to guide environment setup.
+- Update the README.md with detailed project information, including:
+    - A clear project description.
+    - The technology stack and the reasoning behind its selection.
+    - A roadmap for future feature implementations.
+    - Comprehensive setup instructions for new contributors.

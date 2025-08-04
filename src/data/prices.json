@@ -1,0 +1,68 @@
+{
+  "registrationPrices": {
+    "Developing": {
+      "BeforePriceChange": {
+        "NonMembers": 300,
+        "Members": 275,
+        "FinancialMembers": 250,
+        "Student": 225
+      },
+      "AfterPriceChange": {
+        "NonMembers": 350,
+        "Members": 325,
+        "FinancialMembers": 300,
+        "Student": 225
+      }
+    },
+    "Developed": {
+      "BeforePriceChange": {
+        "NonMembers": 600,
+        "Members": 550,
+        "FinancialMembers": 500,
+        "Student": 300
+      },
+      "AfterPriceChange": {
+        "NonMembers": 650,
+        "Members": 600,
+        "FinancialMembers": 550,
+        "Student": 300
+      }
+    },
+    "Malaysia": {
+      "BeforePriceChange": {
+        "NonMembers": 1300,
+        "Members": 1200,
+        "FinancialMembers": 1100,
+        "Student": 1000
+      },
+      "AfterPriceChange": {
+        "NonMembers": 1500,
+        "Members": 1400,
+        "FinancialMembers": 1300,
+        "Student": 1000
+      }
+    }
+  },
+  "workshopPrices": {
+    "Workshop #1": {
+      "Developed": 100,
+      "Developing": 70,
+      "Malaysia": 300
+    },
+    "Workshop #2": {
+      "Developed": 100,
+      "Developing": 70,
+      "Malaysia": 300
+    }
+  },
+  "galaDinnerPrices": {
+    "Developed": 50,
+    "Developing": 50,
+    "Malaysia": 200
+  },
+  "dayConferencePrices": {
+    "Developed": 225,
+    "Developing": 175,
+    "Malaysia": 760
+  }
+}

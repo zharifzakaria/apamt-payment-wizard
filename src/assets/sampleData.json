@@ -1,0 +1,18 @@
+{
+    "title": "Dr.",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "johndoe@example.com",
+    "countryCode": "60",
+    "phoneNumber": "123456789",
+    "affiliation": "NSW University",
+    "position": "Professor",
+    "addressLine1": "123 Example Street",
+    "addressLine2": "Example Building",
+    "city": "Example City",
+    "state": "Example State",
+    "postcode": "12345",
+    "membershipType": "Members",
+    "membershipNo": "123456"
+  }
+  
